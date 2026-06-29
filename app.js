@@ -40,7 +40,7 @@ const coords = {
     suit: [323, 493, 10, 78],
     visibility: [490, 493, 10, 70],
     notes: [59, 439, 9.5, 485, 5],
-    buddySignature: [109, 351, 10, 190],
+    buddySignature: [142, 351, 10, 190],
     centerStamp: [380, 357, 10, 130],
   },
   repeat: {
@@ -60,7 +60,7 @@ const coords = {
     suit: [323, 560, 10, 78],
     visibility: [490, 560, 10, 70],
     notes: [59, 506, 9.5, 485, 5],
-    buddySignature: [109, 418, 10, 190],
+    buddySignature: [142, 418, 10, 190],
     centerStamp: [380, 424, 10, 130],
   },
 };
@@ -231,6 +231,9 @@ function drawDive(page, dive, map, fontBag) {
   const [vx, vy] = map.visibility;
   page.drawRectangle({ x: vx, y: vy - 5, width: 75, height: 30, color: visBg });
   drawSingle(page, dive.visibility, map.visibility, fontBag.regular, fontBag.color);
+  // Cover the notes placeholder text from the template
+  const [nx, ny, , nw] = map.notes;
+  page.drawRectangle({ x: nx, y: ny - 40, width: nw, height: 55, color: visBg });
   drawMultiline(page, dive.notes, map.notes, fontBag.regular, fontBag.color);
   drawSingle(page, dive.buddySignature, map.buddySignature, fontBag.regular, fontBag.color);
   drawSingle(page, dive.centerStamp, map.centerStamp, fontBag.regular, fontBag.color);

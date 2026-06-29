@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LogBook Subacqueo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Registro digitale immersioni</p>
+          <h1>Compila il logbook e scarica il PDF pronto.</h1>
+          <p class="intro">
+            La prima scheda usa la pagina iniziale del modello, le immersioni
+            successive usano la seconda pagina. Aggiungi quante pagine vuoi,
+            compila i campi e genera il PDF finale in un click.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Azioni principali">
+          <button class="primary-action" id="downloadPdf" type="button">
+            Scarica PDF
+          </button>
+          <button class="ghost-action" id="addDiveTop" type="button">
+            Aggiungi immersione
+          </button>
+          <p id="status" class="status" role="status" aria-live="polite">
+            Pronto per compilare.
+          </p>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Gestione pagine">
+        <div>
+          <h2>Immersioni</h2>
+          <p>Ogni riquadro diventerà una pagina del PDF.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="ghost-action" id="addDive" type="button">
+            + Nuova pagina
+          </button>
+          <button class="danger-action" id="resetAll" type="button">
+            Svuota tutto
+          </button>
+        </div>
+      </section>
+
+      <form id="divesForm" class="dives" autocomplete="on"></form>
+    </main>
+
+    <template id="diveTemplate">
+      <article class="dive-card">
+        <header class="dive-card__header">
+          <div>
+            <p class="card-kicker"></p>
+            <h3></h3>
+          </div>
+          <button class="remove-dive" type="button">Rimuovi</button>
+        </header>
+
+        <div class="field-grid">
+          <label>
+            <span>Immersione n°</span>
+            <input data-field="number" inputmode="numeric" placeholder="1" />
+          </label>
+          <label>
+            <span>Data</span>
+            <input data-field="date" type="date" />
+          </label>
+          <label class="wide">
+            <span>Località</span>
+            <input data-field="location" placeholder="Es. Isola Bella" />
+          </label>
+          <label class="wide">
+            <span>Punto log</span>
+            <input data-field="site" placeholder="Nome del punto immersione" />
+          </label>
+          <label>
+            <span>Ora ingresso</span>
+            <input data-field="entryTime" type="time" />
+          </label>
+          <label>
+            <span>Ora uscita</span>
+            <input data-field="exitTime" type="time" />
+          </label>
+          <label>
+            <span>Profondità max (m)</span>
+            <input data-field="maxDepth" inputmode="decimal" placeholder="18" />
+          </label>
+          <label>
+            <span>Tempo fondo (min)</span>
+            <input data-field="bottomTime" inputmode="numeric" placeholder="42" />
+          </label>
+          <label>
+            <span>Temp. acqua (°C)</span>
+            <input data-field="waterTemp" inputmode="decimal" placeholder="23" />
+          </label>
+          <label>
+            <span>Pressione IN (bar)</span>
+            <input data-field="pressureIn" inputmode="numeric" placeholder="200" />
+          </label>
+          <label>
+            <span>Pressione OUT (bar)</span>
+            <input data-field="pressureOut" inputmode="numeric" placeholder="70" />
+          </label>
+          <label>
+            <span>Miscela</span>
+            <input data-field="mix" placeholder="Aria / EAN32" />
+          </label>
+          <label>
+            <span>Zavorra (kg)</span>
+            <input data-field="weight" inputmode="decimal" placeholder="4" />
+          </label>
+          <label>
+            <span>Muta (mm)</span>
+            <input data-field="suit" inputmode="decimal" placeholder="5" />
+          </label>
+          <label>
+            <span>Visibilità</span>
+            <select data-field="visibility">
+              <option value="">Seleziona</option>
+              <option>Ottima</option>
+              <option>Buona</option>
+              <option>Media</option>
+              <option>Scarsa</option>
+            </select>
+          </label>
+          <label class="wide">
+            <span>Note e avvistamenti</span>
+            <textarea
+              data-field="notes"
+              rows="4"
+              placeholder="Condizioni meteo, corrente, fauna, sensazioni..."
+            ></textarea>
+          </label>
+          <label>
+            <span>Firma compagno / guida</span>
+            <input data-field="buddySignature" placeholder="Nome o firma" />
+          </label>
+          <label>
+            <span>Timbro centro</span>
+            <input data-field="centerStamp" placeholder="Centro immersioni" />
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

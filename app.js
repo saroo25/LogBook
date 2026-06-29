@@ -226,6 +226,10 @@ function drawDive(page, dive, map, fontBag) {
   drawSingle(page, dive.mix, map.mix, fontBag.regular, fontBag.color);
   drawSingle(page, dive.weight, map.weight, fontBag.regular, fontBag.color);
   drawSingle(page, dive.suit, map.suit, fontBag.regular, fontBag.color);
+  // Cover the visibility icons from the template with background fill
+  const visBg = PDFLib.rgb(0.972549, 0.980392, 0.988235);
+  const [vx, vy] = map.visibility;
+  page.drawRectangle({ x: vx, y: vy - 5, width: 75, height: 30, color: visBg });
   drawSingle(page, dive.visibility, map.visibility, fontBag.regular, fontBag.color);
   drawMultiline(page, dive.notes, map.notes, fontBag.regular, fontBag.color);
   drawSingle(page, dive.buddySignature, map.buddySignature, fontBag.regular, fontBag.color);
